@@ -186,7 +186,7 @@ public class Solve { // normal 9*9
 		
 	}
 	
-	// 入力：　一つだけ解を出してほしかったらtrueで、他に買いがあるかも確かめてほしかったらfalseで
+	// 入力：　一つだけ解を出してほしかったらtrueで、他に解があるかも確かめてほしかったらfalseで
 	// 出力：　-4: ?, -3 : no answer, -2 : uniqueAnswer=trueで解を求めたとき, -1 : can solve, 
 	// k : some answers (index k won't be decidable) 但しインデックスは0始まり（一番左上が0）
 	public int solve (boolean uniqueAnswer) { 

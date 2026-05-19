@@ -4,7 +4,7 @@
  * コンパイル: javac SudokuSolver.java
  * 実行:       java SudokuSolver
  */
-public class SudokuSolver {
+public class claude {
 
     static final int SIZE = 9;
 

@@ -9,45 +9,17 @@ using ll = long long;
 int main() {
   struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
-  ll H, W;
-  cin >> H >> W;
-  vector<string> s(H);
-  vector<tuple<ll, ll>> black = {};
-  for (ll i = 0; i < H; i++) {
-    cin >> s[i];
-    for (ll j = 0; j < W; j++) {
-      if (s[i][j] == '#') {
-        black.push_back({i, j});
-      }
-    }
-  }
+  vector<int> a = {15,1,93,52,66,31,87,0,42,77,
+    46,24,99,10,19,36,27,4,58,76,2,81,50,102,
+    33,94,20,14,80,82,49,41,12,143,121,7,111,
+    100,60,55,108,34,150,103,109,130,25,54,57,
+    159,136,110,3,167,119,72,18,151,105,171,160,
+    144,85,201,193,188,190,146,210,211,63,207};
 
-  if (black.empty()) {
-    for (ll i = 0; i < H; i++) {
-    for (ll j = 0; j < W; j++) {
-      cout << '.';
-    }
-    cout << endl;
-    }
+  sort(a.rbegin(), a.rend());
+  for (int x : a) {
+    cout << x;
   }
-  
-
-  // 奇数回めに黒だったら，最後は白
-  // 偶数回目に黒だったら，最後は黒
-  // 全て白だったら全て白
-  // １つでも黒があれば，いつかは黒になる
-  // いつ？→一番近い黒との距離
-  // 各ますについて，一番近い黒との距離が偶数（０も）→最後黒，奇数→白
-  // (a, b), (i, j) の距離＝ max(|a-i|, |b-j|)
-  for (ll i = 0; i < H; i++) {
-    for (ll j = 0; j < W; j++) {
-      if (s[i][j] == '#') {
-        black.push_back({i, j});
-      }
-    }
-    cout << endl;
-  }
-  
   
   return 0;
 }

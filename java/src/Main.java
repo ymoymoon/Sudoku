@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main {
 	
@@ -9,9 +14,31 @@ public class Main {
 			System.out.println("One filename, please.");
 			System.exit(0);
 		}
+		String filename = args[0];
+
+		try (BufferedReader br = Files.newBufferedReader(Paths.get(filename), StandardCharsets.UTF_8)) { 
+			String firstDataLine = null;
+			String line;
+
+			// 空行を飛ばして最初のデータ行を探す
+			while ((line = br.readLine()) != null) {
+					line = line.trim();
+					if (!line.isEmpty()) {
+							firstDataLine = line;
+							break;
+					}
+			}
+
+			if (firstDataLine == null) {
+					throw new IllegalArgumentException("No data lines in file.");
+			}
+
+			// 空白区切りで分割して列数を数える
+			String[] tokens = firstDataLine.split("\\s+");
+			int size = tokens.length;
 		
-		boolean uniqueAnswer = false;
-		// uniqueAnswerがTrueのときは、先に大きな数字をできるだけ入れておいた方が速くできる
+			boolean uniqueAnswer = false;
+			// uniqueAnswerがTrueのときは、先に大きな数字をできるだけ入れておいた方が速くできる
 		
 //		int[][] block = {{0, 9, 10, 18, 19, 27, 28, 36, 37},
 //				{1, 2, 3, 11, 12, 20, 21, 29, 30},
@@ -23,23 +50,27 @@ public class Main {
 //				{42, 49, 50, 51, 58, 59, 60, 67, 76},
 //				{61, 68, 69, 70, 71, 77, 78, 79, 80}};
 //		Solve_KAI solve = new Solve_KAI(block); // geometry
-		Solve_KAI solve = new Solve_KAI(16); // big or small
-//		Solve_KAI solve = new Solve_KAI(9); // normal
-		String filename = args[0];
-		solve.readFromFile_KAI(filename);
+			Solve_KAI solve = new Solve_KAI(size); // big or small
+	//		Solve_KAI solve = new Solve_KAI(9); // normal
+			
+			solve.readFromFile_KAI(filename);
+			
+			solve.solve(uniqueAnswer); // Solve 内のメソッドを継承している
+			solve.outputToConsole();
 		
-		solve.solve(uniqueAnswer); // Solve 内のメソッドを継承している
-		solve.outputToConsole();
 		
-		
-		// to make
-//		if (args.length != 0) {
-//			System.out.println("No arguments, please.");
-//			System.exit(0);
-//		}
-//		Make m = new Make();
-//		m.makeandOutput();
-		
+			// to make
+			//		if (args.length != 0) {
+			//			System.out.println("No arguments, please.");
+			//			System.exit(0);
+			//		}
+			//		Make m = new Make();
+			//		m.makeandOutput();
+
+		} catch (IOException e) {
+			System.out.println(filename + " was not found.");
+			System.exit(0);
+		}
 	}
 
 }

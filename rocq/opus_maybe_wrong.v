@@ -416,7 +416,7 @@ Definition example_puzzle : raw_board :=
     [0; 0; 0;  0; 8; 0;  0; 7; 9] ].
 
 (* 計算実行 *)
-(* Compute solve_raw example_puzzle. *)
+Compute solve_raw example_puzzle.
 
 (** * 各戦略の正当性の証明スケッチ *)
 

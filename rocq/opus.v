@@ -146,7 +146,7 @@ Fixpoint solve_aux (fuel : nat) (b : board) : option board :=
 
 (* 十分な燃料でソルバーを呼び出す *)
 Definition solve (b : board) : option board :=
-  solve_aux 10000 b.
+  solve_aux 1000 b.
 
 (** * テスト用の数独パズル *)
 
@@ -171,7 +171,7 @@ Definition example_puzzle : board :=
 Definition example_solution := Eval compute in solve example_puzzle.
 
 (* 結果の確認 *)
-(* Compute solve example_puzzle. *)
+Compute solve example_puzzle.
 
 (** * 正しさの仕様（オプション） *)
 
